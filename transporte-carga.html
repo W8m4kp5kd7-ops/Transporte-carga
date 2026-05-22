@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Medios de Transporte de Carga | Comercio Internacional</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --negro: #080c0e;
+      --azul-marino: #0a1628;
+      --verde-mil: #2d5a27;
+      --verde-claro: #4a9e3f;
+      --verde-neon: #6fcf60;
+      --dorado: #c9a84c;
+      --dorado-claro: #f0c96a;
+      --gris-acero: #8a9bb0;
+      --blanco: #e8edf2;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background-color: var(--negro);
+      color: var(--blanco);
+      font-family: 'Rajdhani', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NOISE OVERLAY ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.4;
+    }
+
+    /* ── HERO ── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 2rem;
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 0%, rgba(45,90,39,0.35) 0%, transparent 70%),
+        radial-gradient(ellipse 60% 40% at 80% 80%, rgba(10,22,40,0.8) 0%, transparent 70%),
+        linear-gradient(170deg, #080c0e 0%, #0a1628 50%, #0d1f0b 100%);
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(106,207,96,0.03) 2px,
+        rgba(106,207,96,0.03) 4px
+      );
+      pointer-events: none;
+    }
+
+    .badge-row {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      animation: fadeDown 0.8s ease both;
+    }
+
+    .badge {
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--dorado);
+      color: var(--dorado-claro);
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      padding: 0.4rem 1rem;
+      text-transform: uppercase;
+      clip-path: polygon(8px 0%, 100% 0%, calc(100% - 8px) 100%, 0% 100%);
+    }
+
+    .hero-eyebrow {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 0.3em;
+      color: var(--verde-neon);
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+      animation: fadeDown 0.9s ease 0.1s both;
+    }
+
+    .hero-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(3rem, 10vw, 8rem);
+      line-height: 0.9;
+      letter-spacing: 0.04em;
+      background: linear-gradient(135deg, var(--blanco) 0%, var(--dorado-claro) 50%, var(--verde-neon) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+      animation: fadeDown 1s ease 0.2s both;
+    }
+
+    .hero-sub {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(1.2rem, 4vw, 2.8rem);
+      letter-spacing: 0.15em;
+      color: var(--gris-acero);
+      margin-bottom: 2rem;
+      animation: fadeDown 1s ease 0.3s both;
+    }
+
+    .transport-icons {
+      display: flex;
+      gap: 2.5rem;
+      font-size: 2.5rem;
+      margin-bottom: 2.5rem;
+      animation: fadeDown 1s ease 0.4s both;
+    }
+
+    .transport-icons span {
+      display: inline-block;
+      animation: float 3s ease-in-out infinite;
+      filter: drop-shadow(0 0 8px rgba(106,207,96,0.5));
+    }
+    .transport-icons span:nth-child(2) { animation-delay: 0.5s; }
+    .transport-icons span:nth-child(3) { animation-delay: 1s; }
+    .transport-icons span:nth-child(4) { animation-delay: 1.5s; }
+
+    .hero-desc {
+      max-width: 680px;
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: var(--gris-acero);
+      font-weight: 500;
+      animation: fadeDown 1s ease 0.5s both;
+    }
+
+    .divider {
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, var(--dorado), var(--verde-neon), var(--dorado), transparent);
+      margin: 0;
+    }
+
+    /* ── SECTION ── */
+    section {
+      position: relative;
+      padding: 5rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.75rem;
+      letter-spacing: 0.35em;
+      color: var(--verde-neon);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      letter-spacing: 0.05em;
+      line-height: 1;
+      margin-bottom: 3rem;
+    }
+
+    .section-title span {
+      color: var(--dorado-claro);
+    }
+
+    /* ── VIDEO GRID ── */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      position: relative;
+      background: linear-gradient(135deg, rgba(10,22,40,0.9), rgba(8,12,14,0.95));
+      border: 1px solid rgba(201,168,76,0.2);
+      overflow: hidden;
+      transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .video-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, var(--verde-mil), var(--dorado), var(--verde-neon));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201,168,76,0.5);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(45,90,39,0.2);
+    }
+
+    .video-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    .card-header {
+      padding: 1.2rem 1.4rem 0.8rem;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      border-bottom: 1px solid rgba(138,155,176,0.1);
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      filter: drop-shadow(0 0 6px rgba(106,207,96,0.6));
+      flex-shrink: 0;
+    }
+
+    .card-meta {
+      flex: 1;
+    }
+
+    .card-category {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.65rem;
+      letter-spacing: 0.25em;
+      color: var(--dorado);
+      text-transform: uppercase;
+    }
+
+    .card-title {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--blanco);
+      line-height: 1.3;
+      margin-top: 0.15rem;
+    }
+
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      border: none;
+    }
+
+    .card-desc {
+      padding: 1rem 1.4rem 1.4rem;
+      font-size: 0.95rem;
+      color: var(--gris-acero);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ── INSTITUTIONS BAND ── */
+    .institutions {
+      background: linear-gradient(90deg, rgba(10,22,40,0.95), rgba(13,31,11,0.95), rgba(10,22,40,0.95));
+      border-top: 1px solid rgba(201,168,76,0.15);
+      border-bottom: 1px solid rgba(201,168,76,0.15);
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+
+    .inst-label {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      color: var(--verde-neon);
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .inst-row {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .inst-badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .inst-icon {
+      font-size: 2.8rem;
+      filter: drop-shadow(0 0 10px rgba(201,168,76,0.5));
+    }
+
+    .inst-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.4rem;
+      letter-spacing: 0.15em;
+      color: var(--dorado-claro);
+    }
+
+    .inst-full {
+      font-family: 'Rajdhani', sans-serif;
+      font-size: 0.8rem;
+      color: var(--gris-acero);
+      letter-spacing: 0.1em;
+      max-width: 200px;
+      text-align: center;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--azul-marino);
+      border-top: 2px solid var(--dorado);
+      padding: 2rem;
+      text-align: center;
+    }
+
+    .footer-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2rem;
+      letter-spacing: 0.2em;
+      color: var(--dorado-claro);
+      margin-bottom: 0.3rem;
+    }
+
+    .footer-sub {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 0.7rem;
+      color: var(--gris-acero);
+      letter-spacing: 0.2em;
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-10px); }
+    }
+
+    .video-card:nth-child(1) { animation-delay: 0.05s; }
+    .video-card:nth-child(2) { animation-delay: 0.15s; }
+    .video-card:nth-child(3) { animation-delay: 0.25s; }
+    .video-card:nth-child(4) { animation-delay: 0.35s; }
+    .video-card:nth-child(5) { animation-delay: 0.45s; }
+    .video-card:nth-child(6) { animation-delay: 0.55s; }
+    .video-card:nth-child(7) { animation-delay: 0.65s; }
+
+    @media (max-width: 600px) {
+      .video-grid { grid-template-columns: 1fr; }
+      .transport-icons { gap: 1.2rem; font-size: 2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HERO ── -->
+<div class="hero">
+  <div class="badge-row">
+    <div class="badge">SEMAR</div>
+    <div class="badge">SEDENA</div>
+    <div class="badge">GN</div>
+    <div class="badge">FAM</div>
+    <div class="badge">Comercio Internacional</div>
+  </div>
+  <p class="hero-eyebrow">// Capacitación Aduanal — Módulo de Transporte</p>
+  <h1 class="hero-title">Medios de<br>Transporte<br>de Carga</h1>
+  <p class="hero-sub">Comercio Internacional &amp; Nacional · México</p>
+  <div class="transport-icons">
+    <span title="Aéreo">✈️</span>
+    <span title="Marítimo">🚢</span>
+    <span title="Terrestre">🚛</span>
+    <span title="Ferroviario">🚂</span>
+  </div>
+  <p class="hero-desc">
+    Explora los principales medios de transporte de carga que mueven el comercio de México con el mundo,
+    y conoce cómo las Fuerzas Armadas mexicanas — SEMAR, SEDENA, FAM y Guardia Nacional —
+    garantizan la seguridad de las rutas comerciales.
+  </p>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── INSTITUTIONS BAND ── -->
+<div class="institutions">
+  <p class="inst-label">// Instituciones involucradas en la seguridad del transporte</p>
+  <div class="inst-row">
+    <div class="inst-badge">
+      <div class="inst-icon">⚓</div>
+      <div class="inst-name">SEMAR</div>
+      <div class="inst-full">Secretaría de Marina — Armada de México</div>
+    </div>
+    <div class="inst-badge">
+      <div class="inst-icon">🎖️</div>
+      <div class="inst-name">SEDENA</div>
+      <div class="inst-full">Secretaría de la Defensa Nacional</div>
+    </div>
+    <div class="inst-badge">
+      <div class="inst-icon">🚁</div>
+      <div class="inst-name">FAM</div>
+      <div class="inst-full">Fuerza Aérea Mexicana</div>
+    </div>
+    <div class="inst-badge">
+      <div class="inst-icon">🛡️</div>
+      <div class="inst-name">GN</div>
+      <div class="inst-full">Guardia Nacional</div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ── VIDEOS ── -->
+<section>
+  <p class="section-label">// Módulos de capacitación</p>
+  <h2 class="section-title">Videos <span>Educativos</span></h2>
+
+  <div class="video-grid">
+
+    <!-- 1. Avión -->
+    <div class="video-card">
+      <div class="card-header">
+        <div class="card-icon">✈️</div>
+        <div class="card-meta">
+          <div class="card-category">Transporte Aéreo</div>
+          <div class="card-title">El Transporte Aéreo de Carga en el Comercio Internacional</div>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/G7MFbW-7I28" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="card-desc">Características, ventajas y operativa del transporte aéreo de mercancías a nivel global.</p>
+    </div>
+
+    <!-- 2. Barco -->
+    <div class="video-card">
+      <div class="card-header">
+        <div class="card-icon">🚢</div>
+        <div class="card-meta">
+          <div class="card-category">Transporte Marítimo</div>
+          <div class="card-title">El Transporte Marítimo de Carga Internacional</div>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/jkTQVlc8IoA" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="card-desc">Funcionamiento de los buques de carga, rutas marítimas y su importancia en el comercio exterior.</p>
+    </div>
+
+    <!-- 3. Camión -->
+    <div class="video-card">
+      <div class="card-header">
+        <div class="card-icon">🚛</div>
+        <div class="card-meta">
+          <div class="card-category">Transporte Terrestre</div>
+          <div class="card-title">El Autotransporte de Carga en México</div>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/FbSRWE4RmrQ" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="card-desc">El autotransporte como columna vertebral del comercio interior y de las exportaciones terrestres de México.</p>
+    </div>
+
+    <!-- 4. Ferrocarril -->
+    <div class="video-card">
+      <div class="card-header">
+        <div class="card-icon">🚂</div>
+        <div class="card-meta">
+          <div class="card-category">Transporte Ferroviario</div>
+          <div class="card-title">El Ferrocarril de Carga en México y su Rol Comercial</div>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/DgTW0gyIFKY" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="card-desc">Red ferroviaria mexicana, tipos de carga transportada y su integración con el comercio internacional.</p>
+    </div>
+
+    <!-- 5. SEMAR -->
+    <div class="video-card">
+      <div class="card-header">
+        <div class="card-icon">⚓</div>
+        <div class="card-meta">
+          <div class="card-category">SEMAR — Seguridad Marítima</div>
+          <div class="card-title">SEMAR en el Comercio Nacional e Internacional</div>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/HdT6SM5aOO8" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="card-desc">Papel de la Secretaría de Marina en la protección de rutas marítimas, puertos y buques de carga frente a amenazas como la piratería.</p>
+    </div>
+
+    <!-- 6. FAM Helicópteros -->
+    <div class="video-card">
+      <div class="card-header">
+        <div class="card-icon">🚁</div>
+        <div class="card-meta">
+          <div class="card-category">FAM — Fuerza Aérea Mexicana</div>
+          <div class="card-title">Ejercicios Aéreos de la FAM contra Amenazas al Transporte</div>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/FgcoferddyY" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="card-desc">Operativos en helicóptero de la Fuerza Aérea Mexicana para neutralizar amenazas a las vías de transporte nacionales.</p>
+    </div>
+
+    <!-- 7. GN Terrestres -->
+    <div class="video-card">
+      <div class="card-header">
+        <div class="card-icon">🛡️</div>
+        <div class="card-meta">
+          <div class="card-category">Guardia Nacional</div>
+          <div class="card-title">Seguridad de la GN en Medios Terrestres</div>
+        </div>
+      </div>
+      <div class="video-wrapper">
+        <iframe src="https://www.youtube.com/embed/pPr0OUkxcOA" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <p class="card-desc">Operativos de la Guardia Nacional para la protección del autotransporte y ferrocarril de carga en carreteras y vías federales.</p>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <div class="footer-title">Capacitación Aduanal — Medios de Transporte de Carga</div>
+  <div class="footer-sub">// Comercio Internacional &amp; Nacional · México · SEMAR · SEDENA · FAM · GN</div>
+</footer>
+
+</body>
+</html>
